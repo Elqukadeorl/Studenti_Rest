@@ -32,7 +32,7 @@ class Student
     return $result;
   }
   public function delete($id){
-    $sql = "DELETE * FROM student WHERE id=:id";
+    $sql = "DELETE FROM student WHERE id=:id";
     $stmt = $this->db->prepare($sql);
     $data = [
       'id' => $id
@@ -41,11 +41,11 @@ class Student
     $result = $stmt->fetch(\PDO::FETCH_ASSOC);
     return $result;
   }
-  public function post($student){
+  public function post(){
     $sql = "INSERT INTO student VALUES ($student)";
     $stmt = $this->db->prepare($sql);
     $data = [
-      'student' => $student
+      $this->$student;
     ];
     $stmt->execute($data);
     $result = $stmt->fetch(\PDO::FETCH_ASSOC);
